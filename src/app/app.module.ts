@@ -10,6 +10,8 @@ import en from '@angular/common/locales/en';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToDoListComponent } from './pages/to-do-list/to-do-list.component';
+import { ComponentsModule } from './modules/components.module';
+import { NgZorroComponentsModule } from './modules/ng-zorro-components.module';
 
 registerLocaleData(en);
 
@@ -23,6 +25,8 @@ registerLocaleData(en);
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ComponentsModule,
+    NgZorroComponentsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
