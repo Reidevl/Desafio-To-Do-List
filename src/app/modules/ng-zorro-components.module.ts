@@ -8,6 +8,8 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 
 // All ng-zorro imports should be managed from here
@@ -23,7 +25,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzTypographyModule,
     NzSelectModule,
     NzButtonModule,
-    NzIconModule
+    NzIconModule,
+    NzPopconfirmModule
   ],
   exports:[
     NzGridModule,
@@ -33,7 +36,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzTypographyModule,
     NzSelectModule,
     NzButtonModule,
-    NzIconModule
+    NzIconModule,
+    NzPopconfirmModule,
+    NzMessageModule
   ]
 })
 export class NgZorroComponentsModule { }
