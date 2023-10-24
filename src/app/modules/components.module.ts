@@ -4,13 +4,15 @@ import { TaskListComponent } from '../components/task-list/task-list.component';
 import { NgZorroComponentsModule } from './ng-zorro-components.module';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TaskComponent } from '../components/task/task.component';
+import { TaskFormComponent } from '../components/task-form/task-form.component';
 
 // All components imports should be managed from here
 
 @NgModule({
   declarations: [
     TaskListComponent,
-    TaskComponent
+    TaskComponent,
+    TaskFormComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { TaskComponent } from '../components/task/task.component';
   ],
   exports: [
     TaskListComponent,
-    TaskComponent
+    TaskComponent,
+    TaskFormComponent
   ]
 })
 export class ComponentsModule { }

@@ -19,7 +19,7 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
-    ToDoListComponent,
+    ToDoListComponent
   ],
   imports: [
     BrowserModule,
