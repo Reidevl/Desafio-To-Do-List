@@ -34,10 +34,13 @@
     <!-- Add task -->
     <!-- TODO: Llamar al Drawer para crear la nueva tarea -->
     <div class="fab-add-task">
-      <button nz-button nzType="primary" nzShape="circle">
+      <button nz-button nzType="primary" nzShape="circle" (click)="openTaskForm()">
         <span nz-icon nzType="plus" nzTheme="outline"></span>
       </button>
     </div>
+
+    <!-- Task Form -->
+      <app-task-form></app-task-form>
 </div>
 
 

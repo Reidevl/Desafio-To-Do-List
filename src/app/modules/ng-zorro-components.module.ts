@@ -10,6 +10,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 
 // All ng-zorro imports should be managed from here
@@ -26,7 +29,10 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzSelectModule,
     NzButtonModule,
     NzIconModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    NzDrawerModule,
+    NzFormModule,
+    NzInputModule
   ],
   exports:[
     NzGridModule,
@@ -38,7 +44,10 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzButtonModule,
     NzIconModule,
     NzPopconfirmModule,
-    NzMessageModule
+    NzMessageModule,
+    NzDrawerModule,
+    NzFormModule,
+    NzInputModule
   ]
 })
 export class NgZorroComponentsModule { }

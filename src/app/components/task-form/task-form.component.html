@@ -1,1 +1,81 @@
-<p>task-form works!</p>
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzVisible]="isDrawerOpen"
+  nzTitle="{{ title }}"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="close()"
+>
+  <form nz-form *nzDrawerContent [formGroup]="taskForm">
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzSpan="24" for="title">Título</nz-form-label>
+          <nz-form-control nzErrorTip="El título debe tener mínimo 6 letras.">
+            <input
+              nz-input
+              id="title"
+              name="title"
+              formControlName="title"
+              placeholder="Introduzca un titulo"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzSpan="24" for="description"
+            >Descripción</nz-form-label
+          >
+          <nz-form-control
+            nzErrorTip="La descripción no debe exceder los 300 carácteres."
+          >
+            <textarea
+              nz-input
+              id="description"
+              name="description"
+              formControlName="description"
+              placeholder="Describa la tarea"
+              [nzAutosize]="{ minRows: 4, maxRows: 8 }"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzSpan="24" for="status">Status</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              id="status"
+              name="status"
+              formControlName="status"
+              nzPlaceHolder="Estado de la tarea"
+            >
+              <nz-option
+                *ngFor="let status of taskStatusOptions"
+                nzLabel="{{ status }}"
+                nzValue="{{ status }}"
+              >
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px" (click)="close()">
+        Cancel
+      </button>
+      <button nz-button nzType="primary" (click)="SubmitTask()">Submit</button>
+    </div>
+  </ng-template>
+</nz-drawer>
