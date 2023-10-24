@@ -1,1 +1,17 @@
-<p>task-list works!</p>
+<!-- Tasks -->
+<!-- TODO: Crear componente de tarea -->
+<div class="container-task">
+  <div nz-row>
+    <h2 nz-typography>All tasks</h2>
+  </div>
+
+  <div nz-row class="task" *ngFor="let item of taskList">
+    <div class="checkboxStatus" nz-col nzSpan="2">
+      <label nz-checkbox [nzChecked]="item.status == taskCompleted"></label>
+    </div>
+    <div nz-col nzSpan="22">
+      <h5 nz-typography>{{ item.title }}</h5>
+      <p>{{ item.description }}</p>
+    </div>
+  </div>
+</div>

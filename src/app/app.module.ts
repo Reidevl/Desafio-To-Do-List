@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToDoListComponent } from './pages/to-do-list/to-do-list.component';
 import { ComponentsModule } from './modules/components.module';
 import { NgZorroComponentsModule } from './modules/ng-zorro-components.module';
+import { FormsModule } from '@angular/forms';
 
 registerLocaleData(en);
 
@@ -25,6 +26,7 @@ registerLocaleData(en);
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     ComponentsModule,
     NgZorroComponentsModule
   ],

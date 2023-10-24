@@ -1,1 +1,48 @@
-<p>to-do-list works!</p>
+<!-- Header -->
+<header>
+  TODO List
+</header>
+<div class="container">
+  <!-- Filter and sort by -->
+  <div nz-row>
+    <div nz-col nzSpan="18" class="selectContainer">
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Seleccione un estado"
+        [(ngModel)]="selectStatus"
+      >
+        <nz-option
+          *ngFor="let status of filterOptions"
+          nzLabel="{{ status }}"
+          nzValue="{{ status }}"
+        >
+        </nz-option>
+      </nz-select>
+    </div>
+
+    <div nz-col nzSpan="6">
+      <button nz-button nzType="primary">
+        <span nz-icon nzType="sort-ascending" nzTheme="outline"></span>
+        Ordenar
+      </button>
+    </div>
+  </div>
+
+  <app-task-list/>
+
+    <!-- Add task -->
+    <!-- TODO: Llamar al Drawer para crear la nueva tarea -->
+    <div class="fab-add-task">
+      <button nz-button nzType="primary" nzShape="circle">
+        <span nz-icon nzType="plus" nzTheme="outline"></span>
+      </button>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer>
+  <p>Created by: Reiwil Lugo<br>
+  <a href="mailto:reiwillugo@gmail.com">reiwillugo@gmail.com</a></p>
+</footer>
