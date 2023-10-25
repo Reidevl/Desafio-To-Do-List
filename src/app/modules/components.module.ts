@@ -6,6 +6,7 @@ import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { TaskComponent } from '../components/task/task.component';
 import { TaskFormComponent } from '../components/task-form/task-form.component';
 import { NoTasksComponent } from '../components/no-tasks/no-tasks.component';
+import { TaskTitlePipe } from '../pipes/task-title.pipe';
 
 // All components imports should be managed from here
 
@@ -14,7 +15,8 @@ import { NoTasksComponent } from '../components/no-tasks/no-tasks.component';
     TaskListComponent,
     TaskComponent,
     TaskFormComponent,
-    NoTasksComponent
+    NoTasksComponent,
+    TaskTitlePipe
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { NoTasksComponent } from '../components/no-tasks/no-tasks.component';
     TaskListComponent,
     TaskComponent,
     TaskFormComponent,
-    NoTasksComponent
+    NoTasksComponent,
+    TaskTitlePipe
   ]
 })
 export class ComponentsModule { }
