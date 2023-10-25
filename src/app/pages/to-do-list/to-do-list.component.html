@@ -1,7 +1,5 @@
 <!-- Header -->
-<header>
-  TODO List
-</header>
+<header>TODO List</header>
 <div class="container">
   <!-- Filter and sort by -->
   <div nz-row>
@@ -30,26 +28,38 @@
   </div>
 
   <ng-container *ngIf="taskList.length >= 1; else noTask">
-    <app-task-list [taskList]="taskList" (editTaskEvent)="openToEditTaskForm($event)"></app-task-list>
+    <app-task-list
+      [taskList]="taskList"
+      (editTaskEvent)="openToEditTaskForm($event)"
+      (deleteTaskEvent)="deleteTask($event)"
+    ></app-task-list>
   </ng-container>
   <ng-template #noTask>
     <app-no-tasks></app-no-tasks>
   </ng-template>
 
-    <!-- Add task -->
-    <div class="fab-add-task">
-      <button nz-button nzType="primary" nzShape="circle" (click)="openToAddNewTaskForm()">
-        <span nz-icon nzType="plus" nzTheme="outline"></span>
-      </button>
-    </div>
+  <!-- Add task -->
+  <div class="fab-add-task">
+    <button
+      nz-button
+      nzType="primary"
+      nzShape="circle"
+      (click)="openToAddNewTaskForm()"
+    >
+      <span nz-icon nzType="plus" nzTheme="outline"></span>
+    </button>
+  </div>
 
-    <!-- Task Form -->
-    <app-task-form (submitTaskEvent)="registerNewOrUpdatedTask($event)"></app-task-form>
+  <!-- Task Form -->
+  <app-task-form
+    (submitTaskEvent)="registerNewOrUpdatedTask($event)"
+  ></app-task-form>
 </div>
-
 
 <!-- Footer -->
 <footer>
-  <p>Created by: Reiwil Lugo<br>
-  <a href="mailto:reiwillugo@gmail.com">reiwillugo@gmail.com</a></p>
+  <p>
+    Created by: Reiwil Lugo<br />
+    <a href="mailto:reiwillugo@gmail.com">reiwillugo@gmail.com</a>
+  </p>
 </footer>

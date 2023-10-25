@@ -29,16 +29,15 @@ export class TaskComponent {
   // METHODS
   cancel(): void {
     this.nzMessageService.info('Cancelado');
-  }
+  };
 
   confirm(): void {
     this.deleteTaskEvent.emit(this.task.id);
-    // TODO: Espera la respuesta de la subscripcion y elimina
     this.nzMessageService.info('Tarea eliminada');
-  }
+  };
 
   editTask(): void {
     const emitValues: EditEvent = {id: this.task.id, edit: true};
     this.editTaskEvent.emit(emitValues);
-  }
+  };
 }
