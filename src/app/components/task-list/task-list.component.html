@@ -6,6 +6,10 @@
   </div>
 
   <ng-container *ngFor="let item of taskList">
-    <app-task [task]="item" (deleteTaskEvent)="deleteTask($event)"/>
+    <app-task
+      [task]="item"
+      (deleteTaskEvent)="deleteTask($event)"
+      (editTaskEvent)="editTask($event)"
+    />
   </ng-container>
 </div>

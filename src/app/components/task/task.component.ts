@@ -2,6 +2,10 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ITask, Status } from 'src/app/Models/Task.interface';
 
+interface EditEvent {
+  id: number,
+  edit: boolean
+}
 
 @Component({
   selector: 'app-task',
@@ -18,6 +22,8 @@ export class TaskComponent {
     status: Status.pending,
   };
   @Output() deleteTaskEvent = new EventEmitter<number>();
+  @Output() editTaskEvent = new EventEmitter<EditEvent>();
+
   taskCompleted: Status = Status.completed;
 
   // METHODS
@@ -29,5 +35,10 @@ export class TaskComponent {
     this.deleteTaskEvent.emit(this.task.id);
     // TODO: Espera la respuesta de la subscripcion y elimina
     this.nzMessageService.info('Tarea eliminada');
+  }
+
+  editTask(): void {
+    const emitValues: EditEvent = {id: this.task.id, edit: true};
+    this.editTaskEvent.emit(emitValues);
   }
 }

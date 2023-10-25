@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { DrawerOptions } from '../Models/Drawer.interface';
-import { ITask, Status } from '../Models/Task.interface';
+import { ITask } from '../Models/Task.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +9,24 @@ import { ITask, Status } from '../Models/Task.interface';
 
 export class DrawerService {
   private isDrawerOpenSubject = new BehaviorSubject<DrawerOptions>(
-    { isOpen: false, drawerTitle: '' }
+    { isOpen: false, drawerTitle: '', isEditing: false }
   );
   isDrawerOpen$ = this.isDrawerOpenSubject.asObservable();
 
-  openDrawer(title: string, data?: ITask): void {
+  openDrawer(title: string, isEditing: boolean, data?: ITask): void {
     if(data) {
       this.isDrawerOpenSubject.next(
         {
           isOpen: true,
           drawerTitle: title,
-          taskData: data
+          isEditing: isEditing,
+          taskData: data,
         }
       );
+
     } else {
       this.isDrawerOpenSubject.next(
-        { isOpen: true, drawerTitle: title }
+        { isOpen: true, drawerTitle: title, isEditing: false }
       );
     }
     console.log('abriendo');
@@ -32,7 +34,7 @@ export class DrawerService {
 
   closeDrawer(): void {
     this.isDrawerOpenSubject.next(
-      { isOpen: false, drawerTitle: '' }
+      { isOpen: false, drawerTitle: '', isEditing: false }
     );
     console.log('cerrando');
   }

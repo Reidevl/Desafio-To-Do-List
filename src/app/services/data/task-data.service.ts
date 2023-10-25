@@ -6,26 +6,7 @@ import { ITask, Status } from 'src/app/Models/Task.interface';
   providedIn: 'root',
 })
 export class TaskDataService {
-  taskList: ITask[] = [
-    {
-      id: 1,
-      title: 'Comer',
-      description: 'Lorem ipsum dolor sit ame.',
-      status: Status.completed,
-    },
-    {
-      id: 2,
-      title: 'Bañarse',
-      description: 'Calentar el agua',
-      status: Status.completed,
-    },
-    {
-      id: 3,
-      title: 'Hacer La tarea',
-      description: 'Lorem ipsum dolor sit amet,.',
-      status: Status.pending,
-    },
-  ];
+  taskList: ITask[] = [];
 
   private taskListSubject = new BehaviorSubject<ITask[]>(this.taskList);
   taskList$ = this.taskListSubject.asObservable();
@@ -35,6 +16,12 @@ export class TaskDataService {
   }
 
   addTask(newTask: ITask): void {
+    if (this.taskList.length === 0) {
+      newTask.id = 1;
+    } else {
+      const maxId = Math.max(...this.getTaskList().map((t) => t.id));
+      newTask.id = maxId + 1;
+    }
     this.taskList.push(newTask);
     this.taskListSubject.next(this.taskList);
   }

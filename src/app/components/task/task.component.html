@@ -5,7 +5,7 @@
   <div class="task-info" nz-col nzSpan="22">
     <h5 nz-typography>
       {{ task.title }}
-      <button nz-button nzType="text">
+      <button nz-button nzType="text" (click)="editTask()">
         <span nz-icon nzType="edit" nzTheme="outline"></span>
       </button>
       <button nz-button nzType="text"
