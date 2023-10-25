@@ -33,20 +33,14 @@
     </div>
   </div>
 
-  <ng-container *ngIf="filteredTaskList.length >= 1; else noTask">
-    <div nz-row>
-      <h4 nz-typography nz-col nzSpan="24" class="title-taskList">{{ taskListTitle | taskTitle }}</h4>
-    </div>
-    <app-task-list
-      [taskList]="filteredTaskList"
-      (editTaskEvent)="openToEditTaskForm($event)"
-      (deleteTaskEvent)="deleteTask($event)"
-      (taskStatusChanged)="changeTaskStatus($event)"
-    ></app-task-list>
-  </ng-container>
-  <ng-template #noTask>
-    <app-no-tasks></app-no-tasks>
-  </ng-template>
+  <!-- Task List -->
+  <app-task-list
+    [taskList]="filteredTaskList"
+    [taskListTitle]="taskListTitle"
+    (editTaskEvent)="openToEditTaskForm($event)"
+    (deleteTaskEvent)="deleteTask($event)"
+    (taskStatusChanged)="changeTaskStatus($event)"
+  ></app-task-list>
 
   <!-- Add task -->
   <div class="fab-add-task">

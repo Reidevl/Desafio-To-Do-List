@@ -9,6 +9,7 @@ import { ITask } from 'src/app/Models/Task.interface';
 })
 export class TaskListComponent {
   @Input() taskList: ITask [] = [];
+  @Input() taskListTitle: string = '';
   @Output() deleteTaskEvent = new EventEmitter<number>();
   @Output() editTaskEvent = new EventEmitter<IEditEvent>();
   @Output() taskStatusChanged = new EventEmitter<IChangeStatusEvent>();

@@ -1,9 +1,17 @@
 <!-- Tasks -->
-<ng-container *ngFor="let item of taskList">
+<ng-container *ngIf="taskList.length >=1; else noTask">
+  <div nz-row>
+    <h4 nz-typography nz-col nzSpan="24" class="title-taskList">{{ taskListTitle | taskTitle }}</h4>
+  </div>
+  <ng-container *ngFor="let item of taskList">
   <app-task
     [task]="item"
     (deleteTaskEvent)="deleteTask($event)"
     (editTaskEvent)="editTask($event)"
     (statusChanged)="onTaskStatusChange($event)"
   />
+  </ng-container>
 </ng-container>
+<ng-template #noTask>
+  <app-no-tasks></app-no-tasks>
+</ng-template>
