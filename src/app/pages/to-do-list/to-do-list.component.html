@@ -33,11 +33,10 @@
     <app-task-list [taskList]="taskList" (editTaskEvent)="openToEditTaskForm($event)"></app-task-list>
   </ng-container>
   <ng-template #noTask>
-    <h3>No hay tareas para mostrar</h3>
+    <app-no-tasks></app-no-tasks>
   </ng-template>
 
     <!-- Add task -->
-    <!-- TODO: Llamar al Drawer para crear la nueva tarea -->
     <div class="fab-add-task">
       <button nz-button nzType="primary" nzShape="circle" (click)="openToAddNewTaskForm()">
         <span nz-icon nzType="plus" nzTheme="outline"></span>
@@ -45,7 +44,7 @@
     </div>
 
     <!-- Task Form -->
-      <app-task-form (submitTaskEvent)="registerNewOrUpdatedTask($event)"></app-task-form>
+    <app-task-form (submitTaskEvent)="registerNewOrUpdatedTask($event)"></app-task-form>
 </div>
 
 
