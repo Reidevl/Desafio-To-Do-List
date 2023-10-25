@@ -13,7 +13,7 @@ import { DrawerService } from 'src/app/services/drawer.service';
 })
 export class TaskFormComponent {
   private drawerService = inject(DrawerService);
-  private formBuilder = inject(FormBuilder);
+  public formBuilder = inject(FormBuilder);
 
   @Output() submitTaskEvent = new EventEmitter<ITaskEvent>();
 
