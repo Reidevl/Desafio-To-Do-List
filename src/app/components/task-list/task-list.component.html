@@ -5,6 +5,7 @@
       [task]="item"
       (deleteTaskEvent)="deleteTask($event)"
       (editTaskEvent)="editTask($event)"
+      (statusChanged)="onTaskStatusChange($event)"
     />
   </ng-container>
 </div>

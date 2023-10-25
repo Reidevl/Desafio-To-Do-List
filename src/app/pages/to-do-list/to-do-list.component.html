@@ -36,6 +36,7 @@
       [taskList]="filteredTaskList"
       (editTaskEvent)="openToEditTaskForm($event)"
       (deleteTaskEvent)="deleteTask($event)"
+      (taskStatusChanged)="changeTaskStatus($event)"
     ></app-task-list>
   </ng-container>
   <ng-template #noTask>

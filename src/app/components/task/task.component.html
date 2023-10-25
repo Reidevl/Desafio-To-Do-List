@@ -1,6 +1,6 @@
 <div nz-row class="task">
   <div class="checkboxStatus" nz-col nzSpan="2">
-    <label nz-checkbox [nzChecked]="task.status == taskCompleted"></label>
+    <label nz-checkbox [nzChecked]="isChecked" (nzCheckedChange)="onStatusChange()"></label>
   </div>
   <div class="task-info" nz-col nzSpan="22">
     <h5 nz-typography>

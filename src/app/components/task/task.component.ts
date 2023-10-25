@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
+// Interfaces
+import { IChangeStatusEvent } from 'src/app/Models/EmitEvent.interface';
 import { ITask, Status } from 'src/app/Models/Task.interface';
 
 interface EditEvent {
@@ -23,8 +25,11 @@ export class TaskComponent {
   };
   @Output() deleteTaskEvent = new EventEmitter<number>();
   @Output() editTaskEvent = new EventEmitter<EditEvent>();
+  @Output() statusChanged = new EventEmitter<IChangeStatusEvent>();
 
-  taskCompleted: Status = Status.completed;
+  get isChecked(): boolean {
+    return this.task.status === Status.completed;
+  }
 
   // METHODS
   cancel(): void {
@@ -40,4 +45,11 @@ export class TaskComponent {
     const emitValues: EditEvent = {id: this.task.id, edit: true};
     this.editTaskEvent.emit(emitValues);
   };
+
+  onStatusChange(): void {
+    let checked = !this.isChecked;
+
+    const emitValues: IChangeStatusEvent = {id: this.task.id, checked: checked};
+    this.statusChanged.emit(emitValues);
+  }
 }

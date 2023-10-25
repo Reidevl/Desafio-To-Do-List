@@ -1,4 +1,4 @@
-import { ITask } from "./Task.interface"
+import { ITask } from './Task.interface';
 
 export interface IEditEvent {
   id: number,
@@ -8,4 +8,9 @@ export interface IEditEvent {
 export interface ITaskEvent {
   task: ITask,
   edit: boolean
+}
+
+export interface IChangeStatusEvent {
+  id: number,
+  checked: boolean
 }

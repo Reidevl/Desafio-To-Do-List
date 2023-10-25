@@ -5,7 +5,7 @@ import { DrawerService } from 'src/app/services/drawer.service';
 import { TaskService } from 'src/app/services/task.service';
 // Interfaces
 import { DrawerOptions } from 'src/app/Models/Drawer.interface';
-import { IEditEvent } from 'src/app/Models/EmitEvent.interface';
+import { IChangeStatusEvent, IEditEvent } from 'src/app/Models/EmitEvent.interface';
 import { ITask, Status } from 'src/app/Models/Task.interface';
 
 @Component({
@@ -84,6 +84,15 @@ export class ToDoListComponent implements OnInit, OnDestroy {
   editTask(task: ITask): void {
     this.taskService.editTask(task);
   };
+
+  changeTaskStatus(event: IChangeStatusEvent): void {
+    const task = this.taskList.find((item: ITask) => item.id === event.id);
+
+    if (task) {
+      task.status = event.checked ? Status.completed : Status.pending;
+      this.editTask(task);
+    }
+  }
 
   deleteTask(id: number): void {
     this.taskService.deleteTask(id);

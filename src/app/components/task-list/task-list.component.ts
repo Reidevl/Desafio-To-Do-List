@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IEditEvent } from 'src/app/Models/EmitEvent.interface';
-import { ITask, Status } from 'src/app/Models/Task.interface';
+import { IChangeStatusEvent, IEditEvent } from 'src/app/Models/EmitEvent.interface';
+import { ITask } from 'src/app/Models/Task.interface';
 
 @Component({
   selector: 'app-task-list',
@@ -11,18 +11,20 @@ export class TaskListComponent {
   @Input() taskList: ITask [] = [];
   @Output() deleteTaskEvent = new EventEmitter<number>();
   @Output() editTaskEvent = new EventEmitter<IEditEvent>();
-
-  taskCompleted: Status = Status.completed;
-
-  // TODO: Implementar la logica correspondiente para tachar la tarea y moverla a otra section
+  @Output() taskStatusChanged = new EventEmitter<IChangeStatusEvent>();
 
   deleteTask(id: number) {
     this.deleteTaskEvent.emit(id);
   };
 
   editTask(event: IEditEvent){
-    const emitValues: IEditEvent = {id: event.id, edit: event.edit};
+    const emitValues: IEditEvent = { id: event.id, edit: event.edit };
     this.editTaskEvent.emit(emitValues);
   };
+
+  onTaskStatusChange(event: IChangeStatusEvent): void {
+    const emitValues: IChangeStatusEvent = { id: event.id, checked: event.checked };
+    this.taskStatusChanged.emit(emitValues);
+  }
 
 }
