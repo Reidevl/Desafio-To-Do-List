@@ -7,6 +7,7 @@ import { TaskComponent } from '../components/task/task.component';
 import { TaskFormComponent } from '../components/task-form/task-form.component';
 import { NoTasksComponent } from '../components/no-tasks/no-tasks.component';
 import { TaskTitlePipe } from '../pipes/task-title.pipe';
+import { HeaderComponent } from '../components/header/header.component';
 
 // All components imports should be managed from here
 
@@ -16,7 +17,8 @@ import { TaskTitlePipe } from '../pipes/task-title.pipe';
     TaskComponent,
     TaskFormComponent,
     NoTasksComponent,
-    TaskTitlePipe
+    TaskTitlePipe,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { TaskTitlePipe } from '../pipes/task-title.pipe';
     TaskComponent,
     TaskFormComponent,
     NoTasksComponent,
-    TaskTitlePipe
+    TaskTitlePipe,
+    HeaderComponent
   ]
 })
 export class ComponentsModule { }

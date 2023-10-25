@@ -7,8 +7,8 @@ import { Status } from '../Models/Task.interface';
 export class TaskTitlePipe implements PipeTransform {
   transform(status: string): string {
     const statusDescriptions: { [key: string]: string } = {
-      'Completado': 'Lista de tareas completadas',
-      'Pendiente': 'Lista de tareas pendientes',
+      'Completado': 'Tareas completadas',
+      'Pendiente': 'Tareas pendientes',
       'Todos': 'Todas las tareas'
     };
     return statusDescriptions[status] || status;

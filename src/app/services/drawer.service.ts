@@ -29,13 +29,11 @@ export class DrawerService {
         { isOpen: true, drawerTitle: title, isEditing: false }
       );
     }
-    console.log('abriendo');
   }
 
   closeDrawer(): void {
     this.isDrawerOpenSubject.next(
       { isOpen: false, drawerTitle: '', isEditing: false }
     );
-    console.log('cerrando');
   }
 }

@@ -1,11 +1,9 @@
 <!-- Tasks -->
-<div class="container-task">
-  <ng-container *ngFor="let item of taskList">
-    <app-task
-      [task]="item"
-      (deleteTaskEvent)="deleteTask($event)"
-      (editTaskEvent)="editTask($event)"
-      (statusChanged)="onTaskStatusChange($event)"
-    />
-  </ng-container>
-</div>
+<ng-container *ngFor="let item of taskList">
+  <app-task
+    [task]="item"
+    (deleteTaskEvent)="deleteTask($event)"
+    (editTaskEvent)="editTask($event)"
+    (statusChanged)="onTaskStatusChange($event)"
+  />
+</ng-container>

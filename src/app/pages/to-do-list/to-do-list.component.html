@@ -1,9 +1,10 @@
 <!-- Header -->
-<header>TODO List</header>
+<app-header/>
+
 <div class="container">
   <!-- Filter and sort by -->
-  <div nz-row>
-    <div nz-col nzSpan="18" class="selectContainer">
+  <div nz-row [nzGutter]="[24, 24]">
+    <div nz-col nzXs="24" nzSm="18" class="selectContainer">
       <nz-select
         nzShowSearch
         nzAllowClear
@@ -20,9 +21,13 @@
       </nz-select>
     </div>
 
-    <div nz-col nzSpan="6">
+    <div nz-col nzXs="24" nzSm="6" class="buttonContainer">
       <button nz-button nzType="primary" (click)="toggleSortOrder()">
-        <span nz-icon [nzType]="sortedByPendingFirst ? 'down' : 'up'" nzTheme="outline"></span>
+        <span
+          nz-icon
+          [nzType]="sortedByPendingFirst ? 'up' : 'down'"
+          nzTheme="outline"
+        ></span>
         Ordenar
       </button>
     </div>
@@ -30,7 +35,7 @@
 
   <ng-container *ngIf="filteredTaskList.length >= 1; else noTask">
     <div nz-row>
-      <h2 nz-typography nz-col nzSpan="24">{{ taskListTitle | taskTitle }}</h2>
+      <h4 nz-typography nz-col nzSpan="24" class="title-taskList">{{ taskListTitle | taskTitle }}</h4>
     </div>
     <app-task-list
       [taskList]="filteredTaskList"
@@ -49,6 +54,7 @@
       nz-button
       nzType="primary"
       nzShape="circle"
+        nzSize="large"
       (click)="openToAddNewTaskForm()"
     >
       <span nz-icon nzType="plus" nzTheme="outline"></span>
@@ -60,11 +66,3 @@
     (submitTaskEvent)="registerNewOrUpdatedTask($event)"
   ></app-task-form>
 </div>
-
-<!-- Footer -->
-<footer>
-  <p>
-    Created by: Reiwil Lugo<br />
-    <a href="mailto:reiwillugo@gmail.com">reiwillugo@gmail.com</a>
-  </p>
-</footer>
