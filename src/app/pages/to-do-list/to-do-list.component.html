@@ -9,6 +9,7 @@
         nzAllowClear
         nzPlaceHolder="Seleccione un estado"
         [(ngModel)]="selectStatus"
+        (ngModelChange)="onStatusChange($event)"
       >
         <nz-option
           *ngFor="let status of filterOptions"
@@ -20,16 +21,19 @@
     </div>
 
     <div nz-col nzSpan="6">
-      <button nz-button nzType="primary">
-        <span nz-icon nzType="sort-ascending" nzTheme="outline"></span>
+      <button nz-button nzType="primary" (click)="toggleSortOrder()">
+        <span nz-icon [nzType]="sortedByPendingFirst ? 'down' : 'up'" nzTheme="outline"></span>
         Ordenar
       </button>
     </div>
   </div>
 
-  <ng-container *ngIf="taskList.length >= 1; else noTask">
+  <ng-container *ngIf="filteredTaskList.length >= 1; else noTask">
+    <div nz-row>
+      <h2 nz-typography nz-col nzSpan="24">{{ taskListTitle | taskTitle }}</h2>
+    </div>
     <app-task-list
-      [taskList]="taskList"
+      [taskList]="filteredTaskList"
       (editTaskEvent)="openToEditTaskForm($event)"
       (deleteTaskEvent)="deleteTask($event)"
     ></app-task-list>

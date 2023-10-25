@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { TaskDataService } from './data/task-data.service';
 import { ITask } from '../Models/Task.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ export class TaskService {
 
   private taskDataService = inject(TaskDataService)
 
-  getTaskList(): ITask[] {
-    return this.taskDataService.getTaskList();
+  getTaskList(): Observable<ITask[]> {
+    return this.taskDataService.taskList$;
   }
 
   addTask(newTask: ITask): void {

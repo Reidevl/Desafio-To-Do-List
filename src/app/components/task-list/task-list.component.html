@@ -1,9 +1,5 @@
 <!-- Tasks -->
 <div class="container-task">
-  <div nz-row>
-    <h2 nz-typography nz-col nzSpan="24">All tasks</h2>
-  </div>
-
   <ng-container *ngFor="let item of taskList">
     <app-task
       [task]="item"
