@@ -8,5 +8,10 @@ export interface ITask {
 export enum Status {
   pending = 'Pendiente',
   completed = 'Completado',
+}
+
+export enum StatusSelected {
+  pending = 'Pendiente',
+  completed = 'Completado',
   all = 'Todos'
 }

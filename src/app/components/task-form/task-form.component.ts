@@ -17,7 +17,7 @@ export class TaskFormComponent {
 
   @Output() submitTaskEvent = new EventEmitter<ITaskEvent>();
 
-  taskStatusOptions: Status[] = [Status.completed, Status.pending];
+  taskStatusOptions: Status[] = Object.values(Status);
   // Drawer vars
   isDrawerOpen: boolean = false;
   title: string = '';

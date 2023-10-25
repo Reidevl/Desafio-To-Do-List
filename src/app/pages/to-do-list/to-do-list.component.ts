@@ -6,7 +6,7 @@ import { TaskService } from 'src/app/services/task.service';
 // Interfaces
 import { DrawerOptions } from 'src/app/Models/Drawer.interface';
 import { IChangeStatusEvent, IEditEvent } from 'src/app/Models/EmitEvent.interface';
-import { ITask, Status } from 'src/app/Models/Task.interface';
+import { ITask, Status, StatusSelected } from 'src/app/Models/Task.interface';
 
 @Component({
   selector: 'app-to-do-list',
@@ -23,9 +23,9 @@ export class ToDoListComponent implements OnInit, OnDestroy {
   filteredTaskList: ITask[] = [];
   taskListSub!: Subscription;
 
-  selectStatus: Status = Status.all;
+  selectStatus: StatusSelected = StatusSelected.all;
   sortedByPendingFirst: boolean = false;
-  filterOptions: string [] = Object.values(Status);
+  filterOptions: string [] = Object.values(StatusSelected);
   isDrawerOpen = false;
 
   ngOnInit(): void {
@@ -100,18 +100,20 @@ export class ToDoListComponent implements OnInit, OnDestroy {
 
   // METHODS: To filter and sort list
   // filter task by status
-  filterTasksByStatus(tasks: ITask[], status: Status): ITask[] {
-    if (status === null || status === Status.all) {
+  filterTasksByStatus(tasks: ITask[], status: StatusSelected): ITask[] {
+    if (status === null || status === StatusSelected.all) {
       this.taskListTitle = 'Todos';
       return tasks;
     } else {
+      let statusString: string = status
       this.taskListTitle = status;
-      const tasksFiltered: ITask[] = tasks.filter((task: ITask) => task.status === status);
+
+      const tasksFiltered: ITask[] = tasks.filter((task: ITask) => task.status === statusString);
       return tasksFiltered
     }
   };
 
-  onStatusChange(status: Status): void {
+  onStatusChange(status: StatusSelected): void {
     this.selectStatus = status;
     this.filteredTaskList = this.filterTasksByStatus(this.taskList, status);
   };
@@ -125,14 +127,14 @@ export class ToDoListComponent implements OnInit, OnDestroy {
   sortTasksByStatus(listOrdered: boolean): void {
     if (listOrdered) {
       this.filteredTaskList = this.filteredTaskList.sort((a, b) => {
-        if (a.status === Status.pending && b.status === Status.completed) return -1;
-        if (a.status === Status.completed && b.status === Status.pending) return 1;
+        if (a.status > b.status) return 1;
+        if (a.status < b.status) return -1;
         return 0;
       });
     } else {
       this.filteredTaskList = this.filteredTaskList.sort((a, b) => {
-        if (a.status === Status.completed && b.status === Status.pending) return -1;
-        if (a.status === Status.pending && b.status === Status.completed) return 1;
+        if (a.status > b.status) return -1;
+        if (a.status < b.status) return 1;
         return 0;
       });
     }
