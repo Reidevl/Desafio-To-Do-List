@@ -11,7 +11,7 @@
       <div nz-col nzSpan="24">
         <nz-form-item>
           <nz-form-label nzSpan="24" for="title">Título</nz-form-label>
-          <nz-form-control nzErrorTip="El título debe tener mínimo 6 letras.">
+          <nz-form-control [nzErrorTip]="getErrorTip('title')">
             <input
               nz-input
               id="title"
@@ -31,7 +31,7 @@
             >Descripción</nz-form-label
           >
           <nz-form-control
-            nzErrorTip="La descripción no debe exceder los 300 carácteres."
+            [nzErrorTip]="getErrorTip('description')"
           >
             <textarea
               nz-input

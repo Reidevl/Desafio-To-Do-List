@@ -18,16 +18,27 @@ export class TaskFormComponent {
   @Output() submitTaskEvent = new EventEmitter<ITaskEvent>();
 
   taskStatusOptions: Status[] = [Status.completed, Status.pending];
-
+  // Drawer vars
   isDrawerOpen: boolean = false;
   title: string = '';
   isEditing: boolean = false;
+  // Form vars
   taskForm!: FormGroup<{
     id: FormControl<number | null>;
     title: FormControl<string | null>;
     description: FormControl<string | null>;
     status: FormControl<Status| null>;
   }>;
+  validationMessages: { [key: string]: { [key: string]: string } } = {
+    title: {
+      required: 'El título es requerido.',
+      minlength: 'El título debe tener al menos 6 caracteres.',
+    },
+    description: {
+      required: 'La descripción es requerida.',
+      maxlength: 'La descripción no debe exceder los 300 caracteres.',
+    },
+  };
 
   ngOnInit(): void {
     this.handleDrawer();
@@ -38,17 +49,17 @@ export class TaskFormComponent {
       .subscribe((options: DrawerOptions) => {
         this.isDrawerOpen = options.isOpen;
         this.title = options.drawerTitle;
-        this.isEditing = options.isEditing
+        this.isEditing = options.isEditing;
 
-        this.initForm(options?.taskData)
+        this.initForm(options?.taskData);
     });
   }
 
   close(): void {
     this.drawerService.closeDrawer();
-  }
+  };
 
-  initForm(data: ITask | undefined) {
+  initForm(data: ITask | undefined): void {
     const { required, maxLength, minLength } = Validators;
 
     this.taskForm = this.formBuilder.group({
@@ -57,9 +68,9 @@ export class TaskFormComponent {
       description:  [data?.description ?? '', [required, maxLength(400)]],
       status:       [data?.status ?? Status.pending, [required]]
     });
-  }
+  };
 
-  submitTask() {
+  submitTask(): void {
     if (this.taskForm.valid) {
       const data = this.taskForm.value as ITask;
       const emitValues: ITaskEvent = {task: data, edit: this.isEditing}
@@ -68,6 +79,26 @@ export class TaskFormComponent {
       this.close()
     } else {
     alert("Por favor rellena todos los campos");
+    };
+  };
+
+  // Handle error messaage to nzErrorTip using ValidatorsError
+  getErrorTip(controlName: string): string {
+    const control = this.taskForm.get(controlName);
+    if (control) {
+      const errors = control.errors;
+      if (errors) {
+        if (errors['required']) {
+          return this.validationMessages[controlName]['required'];
+        }
+        if (errors['minlength']) {
+          return this.validationMessages[controlName]['minlength'];
+        }
+        if (errors['maxlength']) {
+          return this.validationMessages[controlName]['maxlength'];
+        }
+      }
     }
-  }
+    return '';
+  };
 }
