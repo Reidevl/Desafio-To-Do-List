@@ -33,6 +33,7 @@ export class TaskFormComponent {
     title: {
       required: 'El título es requerido.',
       minlength: 'El título debe tener al menos 6 caracteres.',
+      maxlength: 'El título no debe exceder los 30 caracteres.',
     },
     description: {
       required: 'La descripción es requerida.',
@@ -64,7 +65,7 @@ export class TaskFormComponent {
 
     this.taskForm = this.formBuilder.group({
       id:           [data?.id ?? null],
-      title:        [data?.title ?? '', [required, minLength(6)]],
+      title:        [data?.title ?? '', [required, minLength(6), maxLength(30)]],
       description:  [data?.description ?? '', [required, maxLength(400)]],
       status:       [data?.status ?? Status.pending, [required]]
     });

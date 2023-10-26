@@ -110,7 +110,7 @@ describe('TaskFormComponent', () => {
     expect(component.close).toHaveBeenCalled();
   });
 
-  it('should handle error message for title', () => {
+  it('should handle error message for title required', () => {
     const mockControl = new FormControl('', [required, minLength(6)]);
     component.taskForm = new FormBuilder().group({
       ...mockData.taskData,
@@ -118,10 +118,37 @@ describe('TaskFormComponent', () => {
     });
 
     const errorTip = component.getErrorTip('title');
-
     mockControl.markAsTouched();
 
     expect(errorTip).toBe('El título es requerido.');
+  });
+
+  it('should handle error message for title minLength', () => {
+    const mockControl = new FormControl('short', [Validators.minLength(6)]);
+    component.taskForm = new FormBuilder().group({
+      ...mockData.taskData,
+      title: mockControl,
+    });
+
+    const errorTip = component.getErrorTip('title');
+    mockControl.markAsTouched();
+
+    expect(errorTip).toBe('El título debe tener al menos 6 caracteres.');
+  });
+
+  it('should handle error message for title maxLength', () => {
+    const mockControl = new FormControl(
+      'Test title for testing error messagge when title.length is greater than 30 character',
+      [Validators.maxLength(30)]);
+    component.taskForm = new FormBuilder().group({
+      ...mockData.taskData,
+      title: mockControl
+    });
+
+    const errorTip = component.getErrorTip('title');
+    mockControl.markAsTouched();
+
+    expect(errorTip).toBe('El título no debe exceder los 30 caracteres.');
   });
 
   it('should handel error message for description', () => {
@@ -132,9 +159,20 @@ describe('TaskFormComponent', () => {
     });
 
     const errorTip = component.getErrorTip('description');
-
     mockControl.markAsTouched();
 
     expect(errorTip).toBe('La descripción es requerida.');
+  });
+
+  it('should return an empty string when there are no errors on title', () => {
+    const mockControl = new FormControl('Testing no error', required);
+    component.taskForm = new FormBuilder().group({
+      ...mockData.taskData,
+      title: mockControl,
+    });
+
+    const errorTip = component.getErrorTip('title');
+
+    expect(errorTip).toBe('');
   });
 });
