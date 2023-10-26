@@ -22,6 +22,7 @@ import { DrawerOptions } from 'src/app/Models/Drawer.interface';
 describe('ToDoListComponent', () => {
   let component: ToDoListComponent;
   let fixture: ComponentFixture<ToDoListComponent>;
+  let mockTaskList: ITask[] = []
 
   const icons: IconDefinition[] = [PlusOutline];
   // MockServices
@@ -42,14 +43,9 @@ describe('ToDoListComponent', () => {
     deleteTask: (id: number) => {},
   };
 
-  // MockData
-  const mockTaskList: ITask[] = [
-    { id: 1, title: 'Task 1', description: 'Description 1', status: Status.pending },
-    { id: 2, title: 'Task 2', description: 'Description 2', status: Status.completed },
-  ];
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+
       declarations: [ ToDoListComponent ],
       imports: [
         FormsModule,
@@ -64,6 +60,13 @@ describe('ToDoListComponent', () => {
       ],
     })
     .compileComponents();
+    // MockData
+    mockTaskList = [
+      { id: 1, title: 'Task 1', description: 'Description 1', status: Status.pending },
+      { id: 2, title: 'Task 2', description: 'Description 2', status: Status.completed },
+      { id: 3, title: 'Task 3', description: 'Description 3', status: Status.completed },
+      { id: 4, title: 'Task 4', description: 'Description 4', status: Status.pending },
+    ];
     // Create component
     fixture = TestBed.createComponent(ToDoListComponent);
     component = fixture.componentInstance;
@@ -118,13 +121,22 @@ describe('ToDoListComponent', () => {
     expect(mockTaskService.editTask).toHaveBeenCalledWith(mockTaskList[1]);
   });
 
-  it('should change task status', () => {
+  it('should change task status to completed', () => {
     const mockEvent: IChangeStatusEvent = { id: 1, checked: true };
     spyOn(mockTaskService, 'editTask');
     component.changeTaskStatus(mockEvent);
 
     expect(mockTaskService.editTask).toHaveBeenCalled();
     expect(mockTaskList[0].status).toBe(Status.completed);
+  });
+
+  it('should change task status to pending', () => {
+    const mockEvent: IChangeStatusEvent = { id: 2, checked: false };
+    spyOn(mockTaskService, 'editTask');
+    component.changeTaskStatus(mockEvent);
+
+    expect(mockTaskService.editTask).toHaveBeenCalled();
+    expect(mockTaskList[1].status).toBe(Status.pending);
   });
 
   it('should delete task', () => {
@@ -135,13 +147,11 @@ describe('ToDoListComponent', () => {
   });
 
   it('should filter tasks by status', () => {
-    const status = StatusSelected.completed;
-    const statusString: string = status
-    const mockTaskFilter = mockTaskList.filter((task: ITask) => task.status === statusString);
-
+    const status = StatusSelected.pending;
+    const mockTaskFilter = component.filterTasksByStatus(mockTaskList, status)
     component.onStatusChange(status);
-    expect(component.selectStatus).toBe(status);
 
+    expect(component.selectStatus).toBe(status);
     expect(component.filteredTaskList).toEqual(mockTaskFilter);
   });
 
@@ -150,5 +160,41 @@ describe('ToDoListComponent', () => {
     expect(component.sortedByPendingFirst).toBe(true);
     component.toggleSortOrder();
     expect(component.sortedByPendingFirst).toBe(false);
+  });
+
+  it('should change task status to pending if checked is false', () => {
+    const mockEvent: IChangeStatusEvent = { id: 1, checked: false };
+    spyOn(mockTaskService, 'editTask');
+    component.changeTaskStatus(mockEvent);
+
+    expect(mockTaskService.editTask).toHaveBeenCalled();
+    expect(mockTaskList[0].status).toBe(Status.pending);
+  });
+
+  it('should sort tasks by status in pending first', () => {
+    component.toggleSortOrder();
+    const mockTaskListOrdered: ITask[] = [
+      { id: 1, title: 'Task 1', description: 'Description 1', status: Status.pending },
+      { id: 4, title: 'Task 4', description: 'Description 4', status: Status.pending },
+      { id: 2, title: 'Task 2', description: 'Description 2', status: Status.completed },
+      { id: 3, title: 'Task 3', description: 'Description 3', status: Status.completed },
+    ];
+
+    expect(component.sortedByPendingFirst).toBe(true);
+    expect(component.filteredTaskList).toEqual(mockTaskListOrdered);
+  });
+
+  it('should sort tasks by status in completed first', () => {
+    component.sortedByPendingFirst = true
+    component.toggleSortOrder();
+    const mockTaskListOrdered: ITask[] = [
+      { id: 2, title: 'Task 2', description: 'Description 2', status: Status.completed },
+      { id: 3, title: 'Task 3', description: 'Description 3', status: Status.completed },
+      { id: 1, title: 'Task 1', description: 'Description 1', status: Status.pending },
+      { id: 4, title: 'Task 4', description: 'Description 4', status: Status.pending },
+    ];
+
+    expect(component.sortedByPendingFirst).toBe(false);
+    expect(component.filteredTaskList).toEqual(mockTaskListOrdered);
   });
 });

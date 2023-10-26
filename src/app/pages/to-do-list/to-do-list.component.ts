@@ -125,14 +125,14 @@ export class ToDoListComponent implements OnInit, OnDestroy {
   sortTasksByStatus(listOrdered: boolean): void {
     if (listOrdered) {
       this.filteredTaskList = this.filteredTaskList.sort((a, b) => {
-        if (a.status > b.status) return 1;
-        if (a.status < b.status) return -1;
+        if (a.status > b.status) return -1;
+        if (a.status < b.status) return 1;
         return 0;
       });
     } else {
       this.filteredTaskList = this.filteredTaskList.sort((a, b) => {
-        if (a.status > b.status) return -1;
-        if (a.status < b.status) return 1;
+        if (a.status > b.status) return 1;
+        if (a.status < b.status) return -1;
         return 0;
       });
     }
