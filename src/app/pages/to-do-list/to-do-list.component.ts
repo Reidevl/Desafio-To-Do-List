@@ -53,8 +53,6 @@ export class ToDoListComponent implements OnInit, OnDestroy {
 
     if(task){
       this.drawerService.openDrawer('Editar tarea', event.edit, task );
-    } else {
-      console.log('No se esta enviando la data de la tarea')
     }
   };
 

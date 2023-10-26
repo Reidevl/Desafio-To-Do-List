@@ -77,8 +77,6 @@ export class TaskFormComponent {
 
       this.submitTaskEvent.emit(emitValues);
       this.close()
-    } else {
-    alert("Por favor rellena todos los campos");
     };
   };
 
