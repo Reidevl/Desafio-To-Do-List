@@ -54,6 +54,10 @@ Este desafío tiene un conjunto de pruebas unitarias que se pueden ejecutar con 
   ```
   Este ultimo comando genera una carpeta coverage en la raiz del proyecto. Para ver el converage, abre la carpeta y abre el archivo html en un navegador.
 
+## Planteamiento
+Antes de empezar a desarrollar este proyecto generé este planteamiento sobre como abordar la aplicación:
+https://miro.com/app/board/uXjVNXIO4r0=/?share_link_id=680735375813
+
 ## Uso
 
 - Añadir nueva tarea: https://drive.google.com/drive/folders/1vpc760sDkGQNfdNrR8Ik3vmB-fHUQNWA
