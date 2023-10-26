@@ -6,11 +6,7 @@ import { ITask, Status } from 'src/app/Models/Task.interface';
   providedIn: 'root',
 })
 export class TaskDataService {
-  taskList: ITask[] = [
-    { id: 1, title: "Mensaje error form", description: "Mensaje de error en la descripcion cuando esta vacio", status: Status.pending },
-    { id: 3, title: "Edit estado desde afuera", description: "Permitir editar el estado de una tarea desde afuera", status: Status.pending },
-    { id: 5, title: "Lista vacia", description: "mejorar estilo cuando no hay elementos en la lista", status: Status.pending },
-  ];
+  taskList: ITask[] = [];
 
   private taskListSubject = new BehaviorSubject<ITask[]>(this.taskList);
   taskList$ = this.taskListSubject.asObservable();
