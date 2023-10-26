@@ -7,6 +7,7 @@ Este proyecto se creó como parte de un desafío técnico para postular al puest
 - [Tecnologías](#tecnologías)
 - [Requerimientos](#requerimientos)
 - [Instalación](#instalación)
+- [Testing](#testing)
 - [Uso](#uso)
 - [Contacto](#contacto)
 
@@ -39,6 +40,19 @@ Para poder trabajar en este proyecto es requerido tener instalado:
     ```shell
     ng serve
     ```
+
+## Testing
+Este desafío tiene un conjunto de pruebas unitarias que se pueden ejecutar con los siguientes comandos:
+
+- Ejecutar Tests
+  ```shell
+  ng test
+  ```
+- Ejecutar Tests y ver el coverage:
+  ```shell
+  ng test --code-coverage
+  ```
+  Este ultimo comando genera una carpeta coverage en la raiz del proyecto. Para ver el converage, abre la carpeta y abre el archivo html en un navegador.
 
 ## Uso
 
