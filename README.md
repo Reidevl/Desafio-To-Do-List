@@ -8,6 +8,7 @@ Este proyecto se creó como parte de un desafío técnico para postular al puest
 - [Requerimientos](#requerimientos)
 - [Instalación](#instalación)
 - [Testing](#testing)
+- [Planteamiento](#planteamiento)
 - [Uso](#uso)
 - [Contacto](#contacto)
 
