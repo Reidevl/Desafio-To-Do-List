@@ -1,0 +1,29 @@
+.task {
+  border: 1px solid #969292;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 10px 10px 13px -9px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 10px 10px 13px -9px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 13px -9px rgba(0,0,0,0.75);
+}
+
+.checkboxStatus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-info {
+  h5 {
+    margin-top: 0.5rem;
+
+    button {
+      margin-left: 0.5rem;
+    }
+  }
+
+  p {
+    padding-right: 1rem;
+  }
+}
+

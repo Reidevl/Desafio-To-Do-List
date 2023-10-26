@@ -1,0 +1,23 @@
+<div nz-row class="task">
+  <div class="checkboxStatus" nz-col nzSpan="2">
+    <label nz-checkbox [nzChecked]="isChecked" (nzCheckedChange)="onStatusChange()"></label>
+  </div>
+  <div class="task-info" nz-col nzSpan="22">
+    <h5 nz-typography [nzDisabled]="isChecked">
+      {{ task.title }}
+      <button nz-button nzType="text" (click)="editTask()">
+        <span nz-icon nzType="edit" nzTheme="outline"></span>
+      </button>
+      <button nz-button nzType="text"
+        nz-popconfirm
+        nzPopconfirmTitle="Está seguro que desea eliminar esta tarea?"
+        nzPopconfirmPlacement="bottom"
+        (nzOnConfirm)="confirm()"
+        (nzOnCancel)="cancel()"
+      >
+        <span nz-icon nzType="delete" nzTheme="outline"></span>
+      </button>
+    </h5>
+    <p nz-typography [nzDisabled]="isChecked">{{ task.description }}</p>
+  </div>
+</div>

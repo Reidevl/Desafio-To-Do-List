@@ -1,0 +1,29 @@
+// Container
+.container {
+  margin: 1rem 1rem 1rem;
+}
+
+// Select
+.selectContainer{
+  display: flex;
+  justify-content: center;
+
+  nz-select {
+    width: 100%;
+  }
+}
+
+//Button
+.buttonContainer {
+  display: flex;
+  justify-content: end;
+}
+
+// FAB add task
+.fab-add-task {
+  position: fixed;
+  font-size: 16px;
+  bottom: 2rem;
+  right: 2rem;
+}
+

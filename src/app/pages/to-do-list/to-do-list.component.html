@@ -1,0 +1,62 @@
+<!-- Header -->
+<app-header/>
+
+<div class="container">
+  <!-- Filter and sort by -->
+  <div nz-row [nzGutter]="[24, 24]">
+    <div nz-col nzXs="24" nzSm="18" class="selectContainer">
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Seleccione un estado"
+        [(ngModel)]="selectStatus"
+        (ngModelChange)="onStatusChange($event)"
+      >
+        <nz-option
+          *ngFor="let status of filterOptions"
+          nzLabel="{{ status }}"
+          nzValue="{{ status }}"
+        >
+        </nz-option>
+      </nz-select>
+    </div>
+
+    <div nz-col nzXs="24" nzSm="6" class="buttonContainer">
+      <button nz-button nzType="primary" (click)="toggleSortOrder()">
+        <span
+          nz-icon
+          [nzType]="sortedByPendingFirst ? 'down' : 'up'"
+          nzTheme="outline"
+        ></span>
+        Ordenar
+      </button>
+    </div>
+  </div>
+
+  <!-- Task List -->
+  <app-task-list
+    [taskList]="filteredTaskList"
+    [taskListTitle]="taskListTitle"
+    (editTaskEvent)="openToEditTaskForm($event)"
+    (deleteTaskEvent)="deleteTask($event)"
+    (taskStatusChanged)="changeTaskStatus($event)"
+  ></app-task-list>
+
+  <!-- Add task -->
+  <div class="fab-add-task">
+    <button
+      nz-button
+      nzType="primary"
+      nzShape="circle"
+        nzSize="large"
+      (click)="openToAddNewTaskForm()"
+    >
+      <span nz-icon nzType="plus" nzTheme="outline"></span>
+    </button>
+  </div>
+
+  <!-- Task Form -->
+  <app-task-form
+    (submitTaskEvent)="registerNewOrUpdatedTask($event)"
+  ></app-task-form>
+</div>

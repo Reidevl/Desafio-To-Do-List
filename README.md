@@ -1,27 +1,54 @@
-# ToDoList
+# Clinica Somno - Desafío Técnico Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.10.
+Este proyecto se creó como parte de un desafío técnico para postular al puesto de desarrollador frontend en Clínica Somno. Su propósito es proporcionar una aplicación que permita gestionar una lista de tareas, comúnmente conocida como una "TO-DO LIST." La aplicación ofrece diversas funcionalidades, como la creación, edición y eliminación de tareas, así como la capacidad de filtrar y ordenar las tareas, todo ello manteniendo una alta reactividad en la interfaz de usuario.
 
-## Development server
+## Tabla de Contenidos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Tecnologías](#tecnologías)
+- [Requerimientos](#requerimientos)
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Contacto](#contacto)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tecnologías
+- Git
+- Angular
+- TypeScript
+- RxJS
+- Ant Design (ng-zorro)
+- Jasmine - Karma
 
-## Build
+## Requerimientos
+Para poder trabajar en este proyecto es requerido tener instalado: 
+- `Node.js` ^14.20.0 || ^16.13.0 || ^18.10.0
+- `Angular` V.15.2.0
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Instalación
+1. Clona el repositorio:
 
-## Running unit tests
+   ```shell
+   git clone https://github.com/Reidevl/todolist.git
+   ```
+2. Instala las dependencias
+    ```shell
+    cd todolist
+    npm install
+    ```
+3. Iniciar la aplicación
+    ```shell
+    ng serve
+    ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Uso
 
-## Running end-to-end tests
+- Añadir nueva tarea: https://drive.google.com/drive/folders/1vpc760sDkGQNfdNrR8Ik3vmB-fHUQNWA
+- Editar tarea existente: https://drive.google.com/drive/folders/1vpc760sDkGQNfdNrR8Ik3vmB-fHUQNWA
+- Eliminar tarea: https://drive.google.com/drive/folders/1vpc760sDkGQNfdNrR8Ik3vmB-fHUQNWA
+- Marcar o desmarcar como completada una tarea.
+- Filtrar tareas por categorías (completado, pendiente y todas): https://drive.google.com/drive/folders/1vpc760sDkGQNfdNrR8Ik3vmB-fHUQNWA
+- Ordenar por estado de la tarea (completado, pendiente): https://drive.google.com/drive/folders/1vpc760sDkGQNfdNrR8Ik3vmB-fHUQNWA
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Contacto
+- Nombre: Reiwil Lugo
+- Email: reiwillugo@gmail.com
