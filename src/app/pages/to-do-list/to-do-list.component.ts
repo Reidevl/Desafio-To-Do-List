@@ -5,7 +5,7 @@ import { DrawerService } from 'src/app/services/drawer.service';
 import { TaskService } from 'src/app/services/task.service';
 // Interfaces
 import { DrawerOptions } from 'src/app/Models/Drawer.interface';
-import { IChangeStatusEvent, IEditEvent } from 'src/app/Models/EmitEvent.interface';
+import { IChangeStatusEvent, IEditEvent, ITaskEvent } from 'src/app/Models/EmitEvent.interface';
 import { ITask, Status, StatusSelected } from 'src/app/Models/Task.interface';
 
 @Component({
@@ -69,7 +69,7 @@ export class ToDoListComponent implements OnInit, OnDestroy {
   }
 
   // Validate if drawer is opening to add new task or to edit it
-  registerNewOrUpdatedTask(event: {task:ITask, edit:boolean}): void {
+  registerNewOrUpdatedTask(event: ITaskEvent): void {
     if (event.edit) {
       this.editTask(event.task);
     } else {
